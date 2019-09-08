@@ -71,7 +71,7 @@ write.table(FinalData, "FinalData.txt", row.name=FALSE)
 # finally we can look at it like belw
 #verify the variable lis
 
-str(FinalData)
+#str(FinalData)
 
 # look at all details 
- FinalData
+# FinalData
