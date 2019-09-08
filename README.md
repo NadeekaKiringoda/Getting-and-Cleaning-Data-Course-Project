@@ -1,6 +1,8 @@
 # Getting-and-Cleaning-Data-Course-Project
 Getting and Cleaning Data Course Project-coursera
+
 #first load the dplyr library into r workarea
+
 #library(dplyr)
 
 # then dowload the required file into r working area
