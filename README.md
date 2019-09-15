@@ -1,26 +1,26 @@
-# Getting-and-Cleaning-Data-Course-Project
+#Getting-and-Cleaning-Data-Course-Project
 Getting and Cleaning Data Course Project-coursera
 
 #first load the dplyr library into r workarea
 
 #library(dplyr)
 
-# then dowload the required file into r working area
-# create a folder name 'filename and unzip the file
+#then dowload the required file into r working area
+#create a folder name 'filename and unzip the file
 #filename <- "Coursera_DS3_Final.zip"
 
-# Checking if archieve already exists.
+#Checking if archieve already exists.
 #if (!file.exists(filename)){
-#  fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#  download.file(fileURL, filename, method="curl")
+#fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+#download.file(fileURL, filename, method="curl")
 #}  
 
-# Checking if folder exists
+#Checking if folder exists
 #if (!file.exists("UCI HAR Dataset")) { 
-#  unzip(filename) 
+#unzip(filename) 
 #}
 
-# assign all the text files into dataframes 
+#assign all the text files into dataframes 
 #features <- read.table("UCI HAR Dataset/features.txt", col.names = c("n","functions"))
 
 #activities <- read.table("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
@@ -47,40 +47,53 @@ Getting and Cleaning Data Course Project-coursera
 #Subject <- rbind(subject_train, subject_test)
 #Merged_Data <- cbind(Subject, Y, X)
 
-# 2.Extracts only the measurements on the mean and standard deviation for each measurement.
+#2.Extracts only the measurements on the mean and standard deviation for each measurement.
 
 #TidyData <- Merged_Data %>% select(subject, code, contains("mean"), contains("std"))
 
-# 3.Uses descriptive activity names to name the activities in the data set
+#3.Uses descriptive activity names to name the activities in the data set
 
 #TidyData$code <- activities[TidyData$code, 2]
 
 #4. Appropriately labels the data set with descriptive variable names.
 
 #names(TidyData)[2] = "activity"
+
 #names(TidyData)<-gsub("Acc", "Accelerometer", names(TidyData))
+
 #names(TidyData)<-gsub("Gyro", "Gyroscope", names(TidyData))
+
 #names(TidyData)<-gsub("BodyBody", "Body", names(TidyData))
+
 #names(TidyData)<-gsub("Mag", "Magnitude", names(TidyData))
+
 #names(TidyData)<-gsub("^t", "Time", names(TidyData))
+
 #names(TidyData)<-gsub("^f", "Frequency", names(TidyData))
+
 #names(TidyData)<-gsub("tBody", "TimeBody", names(TidyData))
+
 #names(TidyData)<-gsub("-mean()", "Mean", names(TidyData), ignore.case = TRUE)
+
 #names(TidyData)<-gsub("-std()", "STD", names(TidyData), ignore.case = TRUE)
+
 #names(TidyData)<-gsub("-freq()", "Frequency", names(TidyData), ignore.case = TRUE)
+
 #names(TidyData)<-gsub("angle", "Angle", names(TidyData))
+
 #names(TidyData)<-gsub("gravity", "Gravity", names(TidyData))
 
-# 5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+#5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
 FinalData <- TidyData %>%
   group_by(subject, activity) %>%
   summarise_all(list(mean))
 write.table(FinalData, "FinalData.txt", row.name=FALSE)
 
-# finally we can look at it like belw
+#finally we can look at it like belw
 #verify the variable lis
 
 #str(FinalData)
 
-# look at all details 
-# FinalData
+#look at all details 
+#FinalData
